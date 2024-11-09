@@ -5,31 +5,29 @@ const app = express()
 
 app.use(express.json())
 
-// Helper function to read JSON files
-const readJsonFile = (filename) => {
-  try {
-    const filePath = path.join(__dirname, filename)
-    const data = fs.readFileSync(filePath, 'utf8')
-    return JSON.parse(data)
-  } catch (error) {
-    console.error(`Error reading ${filename}:`, error)
-    return []
-  }
-}
+// At the top of index.js
+const projectsAfrica = require('./data/projects-africa.json')
+const projectsIndia = require('./data/projects-india.json')
+const projectsLatam = require('./data/projects-latam.json')
+const projectsSea = require('./data/projects-sea.json')
+const winnersAfrica = require('./data/winners-africa.json')
+const winnersIndia = require('./data/winners-india.json')
+const winnersLatam = require('./data/winners-latam.json')
+const winnersSea = require('./data/winners-sea.json')
 
-// Load all JSON files
+// Replace the data object initialization
 const data = {
   projects: {
-    africa: readJsonFile('projects-africa.json'),
-    india: readJsonFile('projects-india.json'),
-    latam: readJsonFile('projects-latam.json'),
-    sea: readJsonFile('projects-sea.json')
+    africa: projectsAfrica,
+    india: projectsIndia,
+    latam: projectsLatam,
+    sea: projectsSea
   },
   winners: {
-    africa: readJsonFile('winners-africa.json'),
-    india: readJsonFile('winners-india.json'),
-    latam: readJsonFile('winners-latam.json'),
-    sea: readJsonFile('winners-sea.json')
+    africa: winnersAfrica,
+    india: winnersIndia,
+    latam: winnersLatam,
+    sea: winnersSea
   }
 }
 
